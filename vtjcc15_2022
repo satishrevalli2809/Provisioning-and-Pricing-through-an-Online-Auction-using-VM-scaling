@@ -1,0 +1,206 @@
+/*
+SQLyog Community v8.71 
+MySQL - 5.5.30 : Database - vtjcc15_2018
+*********************************************************************
+*/
+
+/*!40101 SET NAMES utf8 */;
+
+/*!40101 SET SQL_MODE=''*/;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`vtjcc15_2018` /*!40100 DEFAULT CHARACTER SET latin1 */;
+
+USE `vtjcc15_2018`;
+
+/*Table structure for table `carddetails` */
+
+DROP TABLE IF EXISTS `carddetails`;
+
+CREATE TABLE `carddetails` (
+  `Card` varchar(50) NOT NULL,
+  `Bank` varchar(250) DEFAULT NULL,
+  `Name` varchar(250) DEFAULT NULL,
+  `ExpDate` int(11) DEFAULT NULL,
+  `ExpMonth` int(11) DEFAULT NULL,
+  `CVV` int(11) DEFAULT NULL,
+  PRIMARY KEY (`Card`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `cauction` */
+
+DROP TABLE IF EXISTS `cauction`;
+
+CREATE TABLE `cauction` (
+  `Cloud` varchar(250) DEFAULT NULL,
+  `Space` varchar(250) DEFAULT NULL,
+  `StartPrice` varchar(250) DEFAULT NULL,
+  `Message` varchar(250) DEFAULT NULL,
+  `Date1` varchar(250) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `cloud` */
+
+DROP TABLE IF EXISTS `cloud`;
+
+CREATE TABLE `cloud` (
+  `CloudName` varchar(250) DEFAULT NULL,
+  `Email` varchar(250) NOT NULL,
+  `Password` varchar(250) DEFAULT NULL,
+  `Space` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`Email`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `cloudspace` */
+
+DROP TABLE IF EXISTS `cloudspace`;
+
+CREATE TABLE `cloudspace` (
+  `CloudName` varchar(250) DEFAULT NULL,
+  `Plan` varchar(250) DEFAULT NULL,
+  `Amount` varchar(250) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `message` */
+
+DROP TABLE IF EXISTS `message`;
+
+CREATE TABLE `message` (
+  `Cloud` varchar(250) DEFAULT NULL,
+  `VMName` varchar(250) DEFAULT NULL,
+  `Message` varchar(500) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `store` */
+
+DROP TABLE IF EXISTS `store`;
+
+CREATE TABLE `store` (
+  `UserId` varchar(250) DEFAULT NULL,
+  `File` varchar(250) DEFAULT NULL,
+  `Image` longblob,
+  `VM` varchar(250) DEFAULT NULL,
+  `Date1` varchar(250) DEFAULT NULL,
+  `Content` varchar(250) DEFAULT NULL,
+  `Size` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `user` */
+
+DROP TABLE IF EXISTS `user`;
+
+CREATE TABLE `user` (
+  `Name` varchar(250) DEFAULT NULL,
+  `Email` varchar(250) NOT NULL,
+  `Password` varchar(250) DEFAULT NULL,
+  `Mobile` varchar(250) DEFAULT NULL,
+  `VM` varchar(250) DEFAULT NULL,
+  `Status1` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`Email`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `userpayment` */
+
+DROP TABLE IF EXISTS `userpayment`;
+
+CREATE TABLE `userpayment` (
+  `PaymentId` int(250) DEFAULT NULL,
+  `User` varchar(250) DEFAULT NULL,
+  `VM` varchar(250) DEFAULT NULL,
+  `Plan` varchar(250) DEFAULT NULL,
+  `Amount` varchar(250) DEFAULT NULL,
+  `Date1` varchar(250) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `userplan` */
+
+DROP TABLE IF EXISTS `userplan`;
+
+CREATE TABLE `userplan` (
+  `UserId` varchar(250) DEFAULT NULL,
+  `VM` varchar(250) DEFAULT NULL,
+  `Plan` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `vm` */
+
+DROP TABLE IF EXISTS `vm`;
+
+CREATE TABLE `vm` (
+  `VMName` varchar(250) DEFAULT NULL,
+  `Email` varchar(250) NOT NULL,
+  `Password` varchar(250) DEFAULT NULL,
+  `Mobile` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`Email`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `vmauction` */
+
+DROP TABLE IF EXISTS `vmauction`;
+
+CREATE TABLE `vmauction` (
+  `Cloud` varchar(250) DEFAULT NULL,
+  `VM` varchar(250) DEFAULT NULL,
+  `Space` varchar(250) DEFAULT NULL,
+  `Price` varchar(250) DEFAULT NULL,
+  `ADate` varchar(250) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `vmcloud` */
+
+DROP TABLE IF EXISTS `vmcloud`;
+
+CREATE TABLE `vmcloud` (
+  `VMName` varchar(250) NOT NULL,
+  `Cloud` varchar(250) DEFAULT NULL,
+  `Space` varchar(250) DEFAULT NULL,
+  `Exp` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`VMName`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `vmpayment` */
+
+DROP TABLE IF EXISTS `vmpayment`;
+
+CREATE TABLE `vmpayment` (
+  `PaymentId` varchar(250) DEFAULT NULL,
+  `VM` varchar(250) DEFAULT NULL,
+  `Cloud` varchar(250) DEFAULT NULL,
+  `Plan` varchar(250) DEFAULT NULL,
+  `Amount` varchar(250) DEFAULT NULL,
+  `Date1` varchar(250) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `vmplan` */
+
+DROP TABLE IF EXISTS `vmplan`;
+
+CREATE TABLE `vmplan` (
+  `VMName` varchar(250) DEFAULT NULL,
+  `Plan` varchar(250) DEFAULT NULL,
+  `Amount` varchar(250) DEFAULT NULL,
+  `Minam` int(11) DEFAULT NULL,
+  `Maxam` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `vmrequest` */
+
+DROP TABLE IF EXISTS `vmrequest`;
+
+CREATE TABLE `vmrequest` (
+  `VMName` varchar(250) DEFAULT NULL,
+  `Cloud` varchar(250) DEFAULT NULL,
+  `Space` varchar(250) DEFAULT NULL,
+  `Req` varchar(250) DEFAULT NULL,
+  `Price` double DEFAULT NULL,
+  `Date1` varchar(250) DEFAULT NULL,
+  `Status1` varchar(250) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
